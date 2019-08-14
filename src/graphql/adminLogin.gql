@@ -1,0 +1,6 @@
+
+mutation AdminLoginGql($password:String!,$email:String!){
+    adminLogin(input:{password:$password,email:$email}){
+        token
+    }
+}

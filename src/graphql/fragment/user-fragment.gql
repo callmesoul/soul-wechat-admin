@@ -1,0 +1,20 @@
+fragment user on UserType {
+        id
+        subscribe
+        openid
+        nickname
+        sex
+        language
+        city
+        province
+        country
+        headimgurl
+        subscribe_time
+        remark
+        groupid
+        tagid_list
+        subscribe_scene
+        qr_scene
+        qr_scene_str
+        wechatId
+}

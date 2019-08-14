@@ -1,0 +1,14 @@
+
+query getUsersTagsGql($wechatId:String!){
+  getUsersTags(wechatId:$wechatId){
+    id
+    _id
+    name
+    count
+    wechatId
+  }
+}
+
+mutation UpdateUserRemarkGql($userId: String!, $remark: String!){
+  updateUserRemark(userId: $userId, remark: $remark)
+}

@@ -1,0 +1,33 @@
+.wechat{
+    .wechat-list{
+        padding: 30px;
+    
+        .ant-card{
+            margin: 15px 0; 
+        }
+    }
+    .add{
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        margin-right: 60px;
+        margin-bottom: 60px;
+        z-index: 8
+    }
+}
+
+.bing-wechat{
+    .tips{
+        color: brown;
+        margin-bottom: 15px;
+    }
+    .item{
+        font-size: 12px;
+        margin-bottom: 15px;
+        .label{
+            margin-right: 15px;
+            width: 100px;
+            text-align: right;
+        }
+    }
+}

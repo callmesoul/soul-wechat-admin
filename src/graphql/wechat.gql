@@ -1,0 +1,39 @@
+mutation CreateWechatGql($name: String!, $type: Int!, $appId: String!, $appSecret: String!, $encrypt: Boolean!){
+  createWechat(input:{name: $name, type: $type, appId:$appId, appSecret: $appSecret, encrypt: $encrypt}){
+    id
+    name
+    type
+    token
+    appId
+    appSecret
+    encrypt
+    encodingAesKey
+  }
+}
+
+query WechatsGql{
+  wechats{
+    id
+    name
+    type
+    appId
+    appSecret
+    encrypt
+    encodingAesKey
+    token
+  }
+}
+
+mutation RemoveWechatGql($id: String!){
+  removeWechat(id: $id)
+}
+
+mutation CheckBindStatusGql($wechatId: String!){
+  checkBindStatus(wechatId: $wechatId)
+}
+
+
+mutation SyncWechatGQl($wechatId: String!){
+  syncWechat(wechatId: $wechatId)
+}
+

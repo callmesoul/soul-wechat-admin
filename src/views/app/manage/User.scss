@@ -1,0 +1,42 @@
+.user{
+    height: 100%;
+    
+    .ant-tabs{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        
+    }
+    
+    .screen{
+        overflow: hidden;
+        margin-bottom: 15px;
+      }
+      .tag-list{
+        .tag-item {
+          width: 200px;
+          line-height: 30px;
+          padding: 0 15px;
+          &.active {
+            background: rgrba(0, 0, 0, 0.4)
+          }
+        }
+      }
+      .user-info{
+          .ant-avatar{
+              margin-right: 15px
+          }
+
+          .cont{
+              .user-tag-list{
+                  font-size: 12px;
+                  color: #999999;
+                  margin-top: 5px;
+                  line-height: 22px;
+                  .ant-tag,span{
+                      margin-right: 15px;
+                  }
+              }
+          }
+      }
+}
