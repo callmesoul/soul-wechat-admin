@@ -1,7 +1,7 @@
 #import './fragment/pagination-fragment.gql'
 #import './fragment/user-fragment.gql'
-query GetUsersGql($nickname: String, $page: Float, $pageSize: Float, $wechatId: String!){
-    getUsers(nickname: $nickname, page: $page, pageSize: $pageSize, wechatId: $wechatId){
+query GetUsersGql($nickname: String, $page: Int, $pageSize: Int, $wechatId: String!, $tagId: Int){
+    getUsers(nickname: $nickname, page: $page, pageSize: $pageSize, wechatId: $wechatId, tagId: $tagId){
       users{
         ...user
       },

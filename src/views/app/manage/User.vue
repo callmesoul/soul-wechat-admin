@@ -3,7 +3,7 @@
     <a-tabs class="user-tabs" defaultActiveKey="1" @change="callback" ref="tab">
       <a-tab-pane tab="已关注" key="1"  class="tab-pane" ref="tab-pane">
         <div class="screen">
-          <a-input placeholder="用户昵称" style="width:200px;" class="pull-left" />
+          <a-input v-model="keyword" placeholder="用户昵称" style="width:200px;" class="pull-left" @keyup.native="keywordChange" />
           <div class="operate pull-right">
             <a-button type="primary" class="mr-15" @click="syncWechat">微信同步</a-button>
             <a-button type="primary" class="">新建标签</a-button>
@@ -41,8 +41,8 @@
           </span>
         </a-table>
         <div class="tag-list">
-          <div class="tag-item tag-all">全部用户({{getUsers.pagination.total}})</div>
-          <div class="tag-item" v-for="tag in getUsersTags" :key="tag._id">{{tag.name}}({{tag.count}})</div>
+          <div class="tag-item tag-all" :class="{ 'active': tagActiveId === 0 }" @click="changeTag(0)">全部用户({{allCount}})</div>
+          <div class="tag-item" :class="{ 'active': tagActiveId === tag.id }" v-for="tag in getUsersTags" :key="tag._id" @click="changeTag(tag.id)">{{tag.name}}({{tag.count}})</div>
         </div>
       </div>
       </a-tab-pane>
@@ -185,7 +185,9 @@ export default {
       visible: false,
       form: this.$form.createForm(this),
       tagForm: this.$form.createForm(this),
-      isShowTagModal: false
+      isShowTagModal: false,
+      keyword: '',
+      tagActiveId: 0
     }
   },
   filters: {
@@ -307,6 +309,28 @@ export default {
       })
     },
     tagSelectChange (data) {
+    },
+    // 关键词搜索
+    keywordChange () {
+      let params = { wechatId: this.$store.state.wechatId }
+      if (this.keyword !== '') {
+        params.nickname = this.keyword
+      }
+      this.$apollo.queries.getUsers.setVariables(params)
+      this.$apollo.queries.getUsers.refetch()
+    },
+    // 更改标签
+    changeTag (tagId) {
+      this.tagActiveId = tagId
+      let params = { wechatId: this.$store.state.wechatId }
+      if (this.keyword !== '') {
+        params.nickname = this.keyword
+      }
+      if (tagId !== 0) {
+        params.tagId = tagId
+      }
+      this.$apollo.queries.getUsers.setVariables(params)
+      this.$apollo.queries.getUsers.refetch()
     }
   },
   updated () {
